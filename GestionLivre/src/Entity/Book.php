@@ -29,6 +29,13 @@ class Book
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
+    #[ORM\ManyToOne(inversedBy: 'book_id')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Author $author = null;
+
+    #[ORM\ManyToOne(inversedBy: 'books')]
+    private ?Editor $editorid = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +97,30 @@ class Book
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getEditorId(): ?Editor
+    {
+        return $this->editorid;
+    }
+
+    public function setEditorId(?Editor $editorid): static
+    {
+        $this->editorid = $editorid;
 
         return $this;
     }

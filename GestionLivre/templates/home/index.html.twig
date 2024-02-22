@@ -16,7 +16,9 @@
     <h1>Liste des livres </h1>
     <hr>
 {% for book in book %}
+<p>N° ISBN</p>
 <p>{{book.ISBN}}</p>
+<p>Titre:</p>
 <p>{{book.title}}</p>
 <a href="{{ path('app_book', {'id': book.id}) }}" class="btn btn-primary">Voir le livre</a>
 <hr>

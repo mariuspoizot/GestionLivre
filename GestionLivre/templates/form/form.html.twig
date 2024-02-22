@@ -1,22 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-        {% endblock %}
-
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-            {% include 'header.html.twig' %}
-        <h1>Formulaire de création de livres</h1>
-        {{form_start(form)}}
-        {{form_end(form)}}
-        {% endblock %}
-    </body>
-</html>
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+{% endblock %}
+{% block title %}Hello Home!
+{% endblock %}
+{% block body %}
+    {% include 'header.html.twig' %}
+ 
+    <h1>Créer un livre</h1>
+    {{ form_start(form) }}
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    <div class="form-error">{{ form_errors(form.title) }}</div>
+ 
+    {{ form_label(form.ISBN) }}
+    {{ form_widget(form.ISBN) }}
+    <div class="form-error">{{ form_errors(form.ISBN) }}</div>
+ 
+    {{ form_label(form.price) }}
+    {{ form_widget(form.price) }}
+    <div class="form-error">{{ form_errors(form.price) }}</div>
+ 
+    {{ form_label(form.author) }}
+    {{ form_widget(form.author) }}
+    <div class="form-error">{{ form_errors(form.author) }}</div>
+ 
+    {{ form_label(form.editorid) }}
+    {{ form_widget(form.editorid) }}
+    <div class="form-error">{{ form_errors(form.editorid) }}</div>
+ 
+ 
+    <button type="submit" class="btn btn-success">Créer</button>
+    {{ form_end(form) }}
+ 
+{% endblock %}

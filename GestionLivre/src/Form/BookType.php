@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Author;
 use App\Entity\Book;
+use App\Entity\Editor;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -66,8 +69,27 @@ class BookType extends AbstractType
                     new NotBlank(),
                 ]
             ])
+            ->add('author', EntityType::class,
+            [
+                'class' => Author::class ,
+                'choice_label' => 'name', 
+                'constraints' => [
+                    new NotBlank(),
+                ]
+                ]
+                )
+                ->add('editorid', EntityType::class,
+                [
+                    'class' => Editor::class ,
+                    'choice_label' => 'name', 
+                    'constraints' => [
+                        new NotBlank(),
+                    ]
+                    ]
+                    )
             ->add('Creer',SubmitType::class,[
-                ]); 
+            ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
